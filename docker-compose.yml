@@ -77,19 +77,23 @@ services:
     restart: always
     networks:
       - default          
-  golang:
-    image: "dgo/golang"
+  pay:
+    image: "dgo/pay"
     build:
-      context: "${GOLANG_DIR}/build"
-    container_name: golang
+      context: "${PAY_DIR}/build"
+    container_name: pay
     ports:
-      - "${GOLANG_PORT}:1729"
+      - "${PAY_PORT}:1729"
     expose:
       - "1729"
     volumes:
-      - "${SOURCE_DIR}/draw:/www:rw"  
+      - "${SOURCE_DIR}/pay:/www:rw"  
     environment:
       TZ: "$TZ"
+    command:
+      - go 
+      - run
+      - cmd/main.go
     restart: always
     networks:
       - default          
