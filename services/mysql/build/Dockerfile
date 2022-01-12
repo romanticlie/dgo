@@ -4,7 +4,7 @@ LABEL author=charlie
 
 COPY ./my.cnf /etc/mysql/conf.d/mysql.cnf
 
-#COPY ./sql/*.sql /docker-entrypoint-initdb.d/
+COPY ./sql/*.sql /docker-entrypoint-initdb.d/
 
 EXPOSE 3306
 
