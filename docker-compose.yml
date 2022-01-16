@@ -4,7 +4,7 @@ services:
   nginx:
     image: "romanticlie/nginx"
     depends_on:
-      - cscke 
+      - cscke-api 
       - cscke-web
     container_name: nginx  
     ports: 
@@ -17,6 +17,7 @@ services:
       - "${NGINX_DIR}/conf/nginx.conf:/etc/nginx/nginx.conf:rw"   
       - "${NGINX_DIR}/conf/conf.d:/etc/nginx/conf.d/:rw"
       - "${NGINX_DIR}/logs:/var/log/nginx/:rw"
+      - "${WEB_SOURCE_DIR}/cscke-web:/usr/share/nginx/html/cscke-web:rw"
     environment:
       TZ: "$TZ"
     restart: always
@@ -74,15 +75,15 @@ services:
     restart: always
     networks:
       - default          
-  cscke:
+  cscke-api:
     image: "romanticlie/golang"
     depends_on:
       - redis
-      - mysql 
       - mongodb
-    container_name: cscke
+      - mysql 
+    container_name: cscke-api
     expose:
-      - ${CSCKE_PORT}
+      - ${CSCKE_API_PORT}
     volumes:
       - "${GO_SOURCE_DIR}/cscke:/www:rw"  
     environment:

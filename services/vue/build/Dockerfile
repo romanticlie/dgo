@@ -1,4 +1,4 @@
-FROM node:16.13.1-alpine3.14
+FROM node:15-alpine
 
 LABEL author=charlie
 
