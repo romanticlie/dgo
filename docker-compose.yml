@@ -43,6 +43,7 @@ services:
       context: "${MYSQL_DIR}/build"
       dockerfile: Dockerfile-cscke
     container_name: mysql
+    privileged: true
     ports:
       - "${MYSQL_PORT}:3306"
     expose:
@@ -60,6 +61,7 @@ services:
   mongodb:
     image: "romanticlie/mongodb"
     container_name: mongodb
+    privileged: true
     ports:
       - "${MONGODB_PORT}:27017"
     expose:
